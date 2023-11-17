@@ -24,17 +24,17 @@ def reverse_file(input_path, output_path):
 def copy_file(input_path, output_path):
     shutil.copyfile(input_path, output_path)
 
-def duplicate_contents(input_path, output_path, n):
+def duplicate_contents(input_path, n):
     with open(input_path, "r") as input_file:
         contents = input_file.read()
-    with open(output_path, "w") as output_file:
+    with open(input_path, "w") as output_file:
         for i in range(n):
             output_file.write(contents)
 
-def replace_string(input_path, output_path, needle, new_string):
+def replace_string(input_path, needle, new_string):
     with open(input_path, "r") as input_file:
         contents = input_file.read()
-    with open(output_path, "w") as output_file:
+    with open(input_path, "w") as output_file:
         output_file.write(contents.replace(needle, new_string))
 
 if __name__ == "__main__":
@@ -49,11 +49,14 @@ if __name__ == "__main__":
             copy_file(input_path, output_path)
         elif operation == "duplicate-contents":
             n = int(args[4])
-            duplicate_contents(input_path, output_path, n)
+            duplicate_contents(input_path, n)
         elif operation == "replace-string":
             needle = args[4]
             new_string = args[5]
-            replace_string(input_path, output_path, needle, new_string)
+            replace_string(input_path, needle, new_string)
 
+
+# コマンド例1 copy
+# command = ""python3 /home/kanata99/filemanipulatorprogram/File-manipulator-Program/file_manipulator.py copy input.txt output2.txt
 
 
